@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Restaurant Menu" />
+    <title>Restaurant Menu</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      header {
+        background-color: rgb(209, 165, 55);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+
+      main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .dish {
+        width: 300px;
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .dish img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
+
+      .dish h2 {
+        margin-top: 0;
+        font-size: 1.5rem;
+      }
+
+      .dish p {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Restaurant</h1>
+      <nav>
+        <ul>
+          <li><a href="#">All</a></li>
+          <li><a href="#">Breakfast</a></li>
+          <li><a href="#">Lunch</a></li>
+          <li><a href="#">Snacks</a></li>
+          <li><a href="#">Dinner</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="menuItems"></main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      const dishes = [
+        {
+          name: "Chicken Noodles",
+          price: 150.0,
+          image: "./image/one.jpg",
+          details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        },
+        {
+          name: "Fish Fry",
+          price: 200.0,
+          image: "./image/two.jpg",
+          details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        },
+        {
+          name: "Samosa",
+          price: 100.0,
+          image: "./image/three.jpg",
+          details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        },
+        {
+          name: "Veg Biryani",
+          price: 250.0,
+          image: "./image/four1.jpg",
+          details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        },
+      ];
+
+      function generateDishItems() {
+        const menuItemsContainer = document.getElementById("menuItems");
+
+        dishes.forEach((dish) => {
+          const dishItem = document.createElement("div");
+          dishItem.className = "dish";
+
+          const dishImage = document.createElement("img");
+          dishImage.src = dish.image;
+          dishImage.alt = dish.name;
+          dishItem.appendChild(dishImage);
+
+          const dishDetails = document.createElement("div");
+          dishDetails.className = "dish-details";
+
+          const dishName = document.createElement("h2");
+          dishName.textContent = dish.name;
+          dishDetails.appendChild(dishName);
+
+          const dishPrice = document.createElement("p");
+          dishPrice.textContent = "Price: " + dish.price.toFixed(2);
+          dishDetails.appendChild(dishPrice);
+
+          const dishDesc = document.createElement("p");
+          dishDesc.textContent = "Dish Details: " + dish.details;
+          dishDetails.appendChild(dishDesc);
+
+          dishItem.appendChild(dishDetails);
+          menuItemsContainer.appendChild(dishItem);
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", generateDishItems);
+    </script>
+  </body>
+</html>
